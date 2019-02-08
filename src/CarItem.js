@@ -27,9 +27,7 @@ class CarItem extends Component {
     }
 
     render() {
-
-        //let { car } = this.props
-
+        
         let { car } = this.state
 
         return (
