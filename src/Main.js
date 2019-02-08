@@ -51,7 +51,7 @@ class Main extends Component {
 
                 <br/>
 
-                <table class="table">
+                <table className="table">
                     <tbody>
                         <tr>
                             <td>Test</td>

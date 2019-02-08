@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
-import { Router, Route, Link } from 'react-router'
+
 import App from './App';
-import Page1 from './Page1'
+
 
 const AppWithRouter = () => (
     <BrowserRouter>
