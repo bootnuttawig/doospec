@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import { addCar, removeCar } from './actions'
 
 import CarItem from './CarItem'
 
 class Select extends Component {
+
 
     constructor(props) {
         super(props)
@@ -13,6 +17,8 @@ class Select extends Component {
         }
 
         this.handlerCarSelected = this.handlerCarSelected.bind(this)
+        
+        this.newHandlerCarSelected = this.newHandlerCarSelected.bind(this)
     }
 
     handlerCarSelected(selectedCar, isSelect) {
@@ -27,16 +33,33 @@ class Select extends Component {
         }
         
         this.setState({
-            cars: this.getMockData(),
             selectedCars: selectedCars
         })
     }
 
+    newHandlerCarSelected(selectedCar, isSelect) {
+
+        let { dispatch } = this.props
+
+        console.log('isSelect ', isSelect)
+
+        if (isSelect) {
+            dispatch(addCar(selectedCar))
+        } else {
+            dispatch(removeCar(selectedCar))
+        }
+
+    }
+
     render() {
+
+        let { counter, selectedCars } = this.props
 
         let { cars } = this.state
         
-        let selectedCars = this.state.selectedCars
+        console.log('render counter', counter)
+        console.log('render selectedCars', selectedCars)
+
         let selectedCarsSize = selectedCars.length
         let displaySelectedCarsSize = selectedCarsSize ? "(" + selectedCarsSize + ")" : ""
 
@@ -60,11 +83,24 @@ class Select extends Component {
                         cars.map(
                             (car, i) => 
                             <li key={car.id}>
-                                <CarItem car={car} onCarSelected={this.handlerCarSelected}/>
+                                <CarItem car={car} 
+                                onCarSelected={this.newHandlerCarSelected}/>
                             </li>
                         )
                     }
                 </ul>
+
+                <ul>
+                    {
+                        selectedCars.map(
+                            (car, i) => 
+                            <li key={car.id+999}>
+                                <CarItem car={car} />
+                            </li>
+                        )
+                    }
+                </ul>
+
             </div>
         )
     }
@@ -96,4 +132,15 @@ class Select extends Component {
 
 }
 
-export default Select;
+//export default Select;
+
+
+const mapStateToProps = state => ({
+    message: 'This is message from mapStateToProps',
+    counter: state.counters || 0,
+    selectedCars: state.CarSelector || []
+  })
+  
+const AppWithConnect = connect(mapStateToProps)(Select)
+
+export default AppWithConnect

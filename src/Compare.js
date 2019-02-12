@@ -8,11 +8,7 @@ class Compare extends Component {
         super(props)
 
         this.state = {
-            carAttributes: [
-                {"text": "", "attr": "name"},
-                {"text": "ราคา", "attr": "price"},
-                {"text": "อัตราการกินน้ำมันเชื้อเพลิง", "attr": "oilConsumption"}
-            ]
+            carAttributes: this.getMockCarAttributes()
         }
     }
 
@@ -45,6 +41,14 @@ class Compare extends Component {
                 </table>
             </div>
         )
+    }
+
+    getMockCarAttributes() {
+        return [
+            {"text": "", "attr": "name"},
+            {"text": "ราคา", "attr": "price"},
+            {"text": "อัตราการกินน้ำมันเชื้อเพลิง", "attr": "oilConsumption"}
+        ]
     }
 }
 

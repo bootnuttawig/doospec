@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 import Select from './Select'
 import Compare from './Compare'
@@ -10,7 +10,7 @@ class App extends Component {
         super(props)
     }
 
-    render() {
+    render() {        
         return (
             <div>
                 <Route exact path="/" component={Select} />                    
@@ -19,5 +19,7 @@ class App extends Component {
         );
   }
 }
+
+
 
 export default App;
